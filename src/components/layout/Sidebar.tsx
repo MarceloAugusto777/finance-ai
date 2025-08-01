@@ -65,12 +65,12 @@ export function Sidebar({ className, onClose }: SidebarProps) {
   return (
     <div className={cn(
       "flex flex-col h-screen bg-sidebar border-r border-sidebar-border transition-all duration-300",
-      isCollapsed ? "w-16" : "w-64",
+      isMobile ? "w-full" : isCollapsed ? "w-16" : "w-64",
       className
     )}>
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
-        {!isCollapsed && (
+        {(!isCollapsed || isMobile) && (
           <div className="flex items-center gap-2">
             <div className="p-2 bg-primary rounded-lg">
               <DollarSign className="w-6 h-6 text-primary-foreground" />
@@ -106,7 +106,7 @@ export function Sidebar({ className, onClose }: SidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-2 space-y-1">
+      <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
         {navigation.map((item) => {
           const isActive = location.pathname === item.href;
           
@@ -116,7 +116,7 @@ export function Sidebar({ className, onClose }: SidebarProps) {
               to={item.href}
               onClick={() => handleNavigation(item.href)}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
+                "flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200",
                 "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                 isActive 
                   ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-sm" 
@@ -124,7 +124,7 @@ export function Sidebar({ className, onClose }: SidebarProps) {
               )}
             >
               <item.icon className="w-5 h-5 flex-shrink-0" />
-              {(!isCollapsed || isMobile) && <span>{item.name}</span>}
+              {(!isCollapsed || isMobile) && <span className="truncate">{item.name}</span>}
             </NavLink>
           );
         })}
@@ -136,23 +136,23 @@ export function Sidebar({ className, onClose }: SidebarProps) {
           to="/configuracoes"
           onClick={() => handleNavigation("/configuracoes")}
           className={cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
+            "flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200",
             "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground/80"
           )}
         >
           <Settings className="w-5 h-5" />
-          {(!isCollapsed || isMobile) && <span>Configurações</span>}
+          {(!isCollapsed || isMobile) && <span className="truncate">Configurações</span>}
         </NavLink>
 
         <button
           onClick={handleLogout}
           className={cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 w-full",
+            "flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full",
             "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground/80"
           )}
         >
           <LogOut className="w-5 h-5" />
-          {(!isCollapsed || isMobile) && <span>Sair</span>}
+          {(!isCollapsed || isMobile) && <span className="truncate">Sair</span>}
         </button>
       </div>
     </div>

@@ -17,15 +17,15 @@ export function Layout({ children, title }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen w-full bg-background overflow-hidden">
       {/* Desktop Sidebar */}
       {!isMobile && <Sidebar />}
       
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header title={title} onMenuClick={() => setSidebarOpen(true)} showMenuButton={isMobile} />
         
-        <main className="flex-1 overflow-auto p-4 sm:p-6">
-          <div className="max-w-7xl mx-auto animate-fade-in min-h-full">
+        <main className="flex-1 overflow-auto p-2 sm:p-4 md:p-6 w-full">
+          <div className="max-w-7xl mx-auto animate-fade-in min-h-full w-full">
             {children}
             <Footer />
           </div>
@@ -35,7 +35,7 @@ export function Layout({ children, title }: LayoutProps) {
       {/* Mobile Sidebar */}
       {isMobile && (
         <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-          <SheetContent side="left" className="w-80 p-0">
+          <SheetContent side="left" className="w-80 p-0 border-r-0">
             <Sidebar onClose={() => setSidebarOpen(false)} />
           </SheetContent>
         </Sheet>

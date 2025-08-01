@@ -169,10 +169,38 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground dark;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    /* Prevenir scroll horizontal */
+    overflow-x: hidden;
+    /* Melhorar performance de scroll */
+    -webkit-overflow-scrolling: touch;
   }
 
-  html {
-    @apply dark;
+  /* Garantir que o conteúdo preencha 100% da tela */
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Melhorar responsividade */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 }
 
@@ -322,5 +350,66 @@ All colors MUST be HSL.
   }
   100% {
     transform: translateX(100%);
+  }
+}
+
+/* Animações para a landing page */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Melhorias para mobile */
+@layer utilities {
+  /* Prevenir overflow horizontal */
+  .overflow-x-hidden {
+    overflow-x: hidden;
+  }
+  
+  /* Melhorar scroll em mobile */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Garantir que cards não quebrem layout */
+  .card-responsive {
+    min-width: 0;
+    width: 100%;
+  }
+  
+  /* Melhorar espaçamento em mobile */
+  .mobile-padding {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .mobile-padding {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 }
