@@ -1,4 +1,4 @@
-import { Search, User, Menu } from "lucide-react";
+import { Search, User, Menu, MoreVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -37,7 +37,7 @@ export function Header({ title = "Dashboard", onMenuClick, showMenuButton = fals
   };
 
   return (
-    <header className="glass-surface border-b border-border/20 px-4 sm:px-6 py-4">
+    <header className="glass-surface border-b border-border/20 px-4 sm:px-6 py-4 sticky top-0 z-50 bg-background/95 backdrop-blur-sm">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {showMenuButton && (
@@ -45,21 +45,21 @@ export function Header({ title = "Dashboard", onMenuClick, showMenuButton = fals
               variant="ghost"
               size="sm"
               onClick={onMenuClick}
-              className="md:hidden"
+              className="md:hidden p-2 h-10 w-10 rounded-lg hover:bg-accent"
             >
-              <Menu className="w-5 h-5" />
+              <MoreVertical className="w-5 h-5" />
             </Button>
           )}
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-foreground">{title}</h1>
-            <p className="text-xs sm:text-sm text-muted-foreground">
+          <div className="min-w-0 flex-1">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground truncate">{title}</h1>
+            <p className="text-xs sm:text-sm text-muted-foreground truncate">
               Bem-vindo de volta! Aqui está seu resumo financeiro.
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          {/* Search */}
+          {/* Search - Hidden on mobile */}
           <div className="relative hidden md:block">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <Input
@@ -98,8 +98,8 @@ export function Header({ title = "Dashboard", onMenuClick, showMenuButton = fals
               <DropdownMenuItem>Suporte</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem 
-                className="text-danger cursor-pointer"
                 onClick={handleLogout}
+                className="text-destructive focus:text-destructive"
               >
                 Sair
               </DropdownMenuItem>

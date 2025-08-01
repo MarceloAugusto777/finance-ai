@@ -71,13 +71,13 @@ export function Sidebar({ className, onClose }: SidebarProps) {
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
         {(!isCollapsed || isMobile) && (
-          <div className="flex items-center gap-2">
-            <div className="p-2 bg-primary rounded-lg">
+          <div className="flex items-center gap-3 min-w-0 flex-1">
+            <div className="p-2 bg-primary rounded-lg flex-shrink-0">
               <DollarSign className="w-6 h-6 text-primary-foreground" />
             </div>
-            <div>
-              <h1 className="text-lg font-bold text-sidebar-foreground">FinanceAI</h1>
-              <p className="text-xs text-sidebar-foreground/60">Dashboard Financeiro</p>
+            <div className="min-w-0 flex-1">
+              <h1 className="text-lg font-bold text-sidebar-foreground truncate">FinanceAI</h1>
+              <p className="text-xs text-sidebar-foreground/60 truncate">Dashboard Financeiro</p>
             </div>
           </div>
         )}
@@ -87,7 +87,7 @@ export function Sidebar({ className, onClose }: SidebarProps) {
             variant="ghost"
             size="sm"
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="text-sidebar-foreground hover:bg-sidebar-accent"
+            className="text-sidebar-foreground hover:bg-sidebar-accent flex-shrink-0"
           >
             {isCollapsed ? <Menu className="w-4 h-4" /> : <X className="w-4 h-4" />}
           </Button>
@@ -98,7 +98,7 @@ export function Sidebar({ className, onClose }: SidebarProps) {
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="text-sidebar-foreground hover:bg-sidebar-accent"
+            className="text-sidebar-foreground hover:bg-sidebar-accent flex-shrink-0"
           >
             <X className="w-4 h-4" />
           </Button>
@@ -140,7 +140,7 @@ export function Sidebar({ className, onClose }: SidebarProps) {
             "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground/80"
           )}
         >
-          <Settings className="w-5 h-5" />
+          <Settings className="w-5 h-5 flex-shrink-0" />
           {(!isCollapsed || isMobile) && <span className="truncate">Configurações</span>}
         </NavLink>
 
@@ -151,7 +151,7 @@ export function Sidebar({ className, onClose }: SidebarProps) {
             "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sidebar-foreground/80"
           )}
         >
-          <LogOut className="w-5 h-5" />
+          <LogOut className="w-5 h-5 flex-shrink-0" />
           {(!isCollapsed || isMobile) && <span className="truncate">Sair</span>}
         </button>
       </div>

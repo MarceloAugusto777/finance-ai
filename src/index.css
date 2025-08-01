@@ -173,12 +173,25 @@ All colors MUST be HSL.
     overflow-x: hidden;
     /* Melhorar performance de scroll */
     -webkit-overflow-scrolling: touch;
+    /* Fixar viewport */
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
-
+  
   /* Garantir que o conteúdo preencha 100% da tela */
   html, body {
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container principal */
+  #root {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
   }
   
   /* Melhorar responsividade */
@@ -404,6 +417,25 @@ All colors MUST be HSL.
   .mobile-padding {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+  }
+  
+  /* Fixar layout mobile */
+  .mobile-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  /* Container mobile */
+  .mobile-container {
+    height: 100vh;
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
   
   @media (min-width: 640px) {
