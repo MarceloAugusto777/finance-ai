@@ -278,7 +278,7 @@ const Metas = () => {
         </div>
 
         {/* Resumo Geral */}
-        <div className="grid gap-6 md:grid-cols-4">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="pb-3">
               <div className="flex items-center gap-2">
@@ -333,7 +333,7 @@ const Metas = () => {
         </div>
 
         {/* Lista de Metas */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {metas.map((meta) => {
             const progresso = calcularProgresso(meta);
             const statusInfo = getStatusInfo(meta);
@@ -451,7 +451,7 @@ const Metas = () => {
             </DialogHeader>
             
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="titulo">Título *</Label>
                   <Input
@@ -494,7 +494,7 @@ const Metas = () => {
                 />
               </div>
               
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="valor_meta">Valor da Meta (R$) *</Label>
                   <Input
@@ -520,7 +520,7 @@ const Metas = () => {
                 </div>
               </div>
               
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="data_inicio">Data de Início *</Label>
                   <Input
@@ -546,7 +546,7 @@ const Metas = () => {
                 </div>
               </div>
               
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="prioridade">Prioridade</Label>
                   <Select

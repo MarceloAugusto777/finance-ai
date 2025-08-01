@@ -185,7 +185,7 @@ const Entradas = () => {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid gap-6 md:grid-cols-4">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="finance-card border-success/20 bg-success/5">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-2">

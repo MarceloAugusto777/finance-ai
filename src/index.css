@@ -438,6 +438,51 @@ All colors MUST be HSL.
     -webkit-overflow-scrolling: touch;
   }
   
+  /* Prevenir zoom em mobile */
+  .prevent-zoom {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Garantir que grids sejam responsivos */
+  .grid-mobile {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  
+  @media (min-width: 640px) {
+    .grid-mobile {
+      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .grid-mobile {
+      gap: 1.5rem;
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* Prevenir movimento horizontal */
+  .no-horizontal-scroll {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  /* Garantir que conteúdo fique dentro da tela */
+  .content-fit {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  
   @media (min-width: 640px) {
     .mobile-padding {
       padding-left: 1rem;
