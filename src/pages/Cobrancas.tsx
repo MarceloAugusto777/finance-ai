@@ -185,7 +185,7 @@ const Cobrancas = () => {
 
   return (
     <Layout title="Cobranças">
-      <div className="space-y-6">
+               <div className="space-y-6 contain-screen">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
@@ -366,7 +366,7 @@ const Cobrancas = () => {
             </Card>
           ) : (
             filteredCobrancas.map((cobranca) => (
-              <Card key={cobranca.id} className="finance-card">
+                             <Card key={cobranca.id} className="finance-card contain-screen">
                 <CardContent className="pt-6">
                                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-4">

@@ -262,7 +262,7 @@ const Metas = () => {
 
   return (
     <Layout title="Metas Financeiras">
-      <div className="space-y-6">
+               <div className="space-y-6 contain-screen">
         {/* Header */}
         <div className="flex flex-col sm:flex-row gap-4 justify-between">
           <div>
@@ -343,7 +343,7 @@ const Metas = () => {
             const TipoIcon = tipoInfo.icon;
 
             return (
-              <Card key={meta.id} className="hover:shadow-lg transition-shadow">
+                             <Card key={meta.id} className="hover:shadow-lg transition-shadow contain-screen">
                 <CardHeader className="pb-4">
                                      <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
                     <div className="flex items-center gap-2">

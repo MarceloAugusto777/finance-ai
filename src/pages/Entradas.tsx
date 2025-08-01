@@ -146,7 +146,7 @@ const Entradas = () => {
 
   return (
     <Layout title="Entradas">
-      <div className="space-y-6">
+               <div className="space-y-6 contain-screen">
         {/* Header Actions */}
                  <div className="flex flex-col sm:flex-row gap-4 justify-between flex-mobile">
                      <div className="flex gap-3 flex-wrap">
@@ -267,7 +267,7 @@ const Entradas = () => {
             </Card>
           ) : (
             filteredEntradas.map((entrada) => (
-              <Card key={entrada.id} className="finance-card hover:shadow-md transition-shadow">
+                             <Card key={entrada.id} className="finance-card hover:shadow-md transition-shadow contain-screen">
                 <CardContent className="pt-6">
                                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                                          <div className="flex items-center gap-4 min-w-0 flex-1">
@@ -283,7 +283,7 @@ const Entradas = () => {
                        </div>
                      </div>
                     
-                                         <div className="flex items-center gap-4 flex-shrink-0">
+                                         <div className="flex items-center gap-4 flex-shrink-0 contain-screen">
                       <div className="text-right">
                         <p className="font-medium text-lg text-green-600">
                           + {new Intl.NumberFormat("pt-BR", {

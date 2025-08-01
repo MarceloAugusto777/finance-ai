@@ -173,10 +173,6 @@ All colors MUST be HSL.
     overflow-x: hidden;
     /* Melhorar performance de scroll */
     -webkit-overflow-scrolling: touch;
-    /* Fixar viewport */
-    position: fixed;
-    width: 100%;
-    height: 100%;
   }
   
   /* Garantir que o conteúdo preencha 100% da tela */
@@ -419,7 +415,7 @@ All colors MUST be HSL.
     padding-right: 0.5rem;
   }
   
-  /* Fixar layout mobile */
+  /* Fixar layout mobile apenas para o app */
   .mobile-fixed {
     position: fixed;
     top: 0;
@@ -523,6 +519,23 @@ All colors MUST be HSL.
   .button-mobile {
     min-width: 0;
     flex-shrink: 0;
+  }
+  
+  /* Garantir que elementos fiquem dentro da tela */
+  .contain-screen {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Melhorar espaçamento em mobile */
+  .mobile-spacing {
+    padding: 0.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .mobile-spacing {
+      padding: 1rem;
+    }
   }
   
   @media (min-width: 640px) {
