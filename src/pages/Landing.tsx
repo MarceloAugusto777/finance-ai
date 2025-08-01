@@ -22,9 +22,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useMobileDetect } from "@/hooks/useMobileDetect";
+import LandingMobile from "./LandingMobile";
 
 export default function Landing() {
   const navigate = useNavigate();
+  const isMobile = useMobileDetect();
 
   const handleRegisterClick = () => {
     console.log('Register button clicked');
@@ -41,8 +44,13 @@ export default function Landing() {
     navigate('/contato');
   };
 
+  // Renderizar versão mobile se for dispositivo móvel
+  if (isMobile) {
+    return <LandingMobile />;
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-y-auto w-full mobile-scrollable landing-page">
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-40">
         <div className="absolute inset-0 bg-gradient-to-br from-green-600/10 to-emerald-600/10"></div>
@@ -81,35 +89,36 @@ export default function Landing() {
             </button>
           </nav>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <Button 
               variant="ghost" 
-              className="text-white hover:bg-green-500/20 border-green-500/20" 
+              className="text-white hover:bg-green-500/20 border-green-500/20 hidden sm:flex" 
               onClick={handleLoginClick}
             >
               <LogIn className="mr-2 w-4 h-4" />
               Login
             </Button>
             <Button 
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-green-500/25 transition-all duration-300" 
+              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-green-500/25 transition-all duration-300 text-sm md:text-base px-3 md:px-4" 
               onClick={handleRegisterClick}
             >
-              Começar Grátis
+              <span className="hidden sm:inline">Começar Grátis</span>
+              <span className="sm:hidden">Começar</span>
             </Button>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative container mx-auto px-4 py-32 text-center">
+      <section className="relative container mx-auto px-4 py-16 md:py-32 text-center">
         <div className="max-w-5xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-6 py-2 mb-8">
+          <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 md:px-6 py-2 mb-6 md:mb-8">
             <Sparkles className="w-4 h-4 text-green-400" />
-            <span className="text-white/90 text-sm font-medium">💰 Revolucione suas finanças</span>
+            <span className="text-white/90 text-xs md:text-sm font-medium">💰 Revolucione suas finanças</span>
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight px-2">
             Gerencie suas{" "}
             <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
               finanças
@@ -117,25 +126,25 @@ export default function Landing() {
             com inteligência
           </h1>
           
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
             O sistema mais inteligente de gestão financeira. 
             Dashboard em tempo real, relatórios avançados e insights baseados em IA para 
             transformar sua relação com o dinheiro.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-12 md:mb-16 px-4">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-green-500/25 transition-all duration-300 text-lg px-8 py-6" 
+              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-green-500/25 transition-all duration-300 text-base md:text-lg px-6 md:px-8 py-4 md:py-6" 
               onClick={handleRegisterClick}
             >
               Começar Grátis
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-green-500/20 text-white hover:bg-green-500/10 text-lg px-8 py-6" 
+              className="border-green-500/20 text-white hover:bg-green-500/10 text-base md:text-lg px-6 md:px-8 py-4 md:py-6" 
               onClick={handleRegisterClick}
             >
               Ver Demonstração
@@ -143,40 +152,40 @@ export default function Landing() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">10K+</div>
-              <div className="text-gray-300">Usuários ativos</div>
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300">10K+</div>
+              <div className="text-gray-300 text-sm md:text-base">Usuários ativos</div>
             </div>
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">99.9%</div>
-              <div className="text-gray-300">Uptime garantido</div>
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300">99.9%</div>
+              <div className="text-gray-300 text-sm md:text-base">Uptime garantido</div>
             </div>
             <div className="text-center group">
-              <div className="text-4xl font-bold bg-gradient-to-r from-teal-400 to-green-400 bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">24/7</div>
-              <div className="text-gray-300">Suporte disponível</div>
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-400 to-green-400 bg-clip-text text-transparent mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300">24/7</div>
+              <div className="text-gray-300 text-sm md:text-base">Suporte disponível</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="relative py-32 bg-black/40 backdrop-blur-sm">
+      <section id="features" className="relative py-16 md:py-32 bg-black/40 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full px-6 py-2 mb-6">
+          <div className="text-center mb-12 md:mb-20">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
               <Target className="w-4 h-4 text-white" />
-              <span className="text-white text-sm font-medium">Funcionalidades</span>
+              <span className="text-white text-xs md:text-sm font-medium">Funcionalidades</span>
             </div>
-            <h2 className="text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 px-4">
               Poderoso e Intuitivo
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-base md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
               Tudo que você precisa para dominar suas finanças com tecnologia de ponta
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <Card className="border-green-500/20 bg-black/40 backdrop-blur-sm hover:bg-green-500/10 transition-all duration-300 group">
               <CardHeader>
                 <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -253,40 +262,40 @@ export default function Landing() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32">
+      <section className="relative py-16 md:py-32">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl font-bold text-white mb-8">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 md:mb-8 px-4">
               Pronto para transformar suas finanças?
             </h2>
-            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+            <p className="text-base md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl mx-auto px-4">
               Junte-se a milhares de usuários que já revolucionaram sua gestão financeira
             </p>
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-green-500/25 transition-all duration-300 text-lg px-12 py-6" 
+              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 shadow-lg hover:shadow-green-500/25 transition-all duration-300 text-base md:text-lg px-8 md:px-12 py-4 md:py-6" 
               onClick={handleRegisterClick}
             >
               Começar Agora
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
             </Button>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative border-t border-green-500/20 bg-black/40 backdrop-blur-sm py-12">
+      <footer className="relative border-t border-green-500/20 bg-black/40 backdrop-blur-sm py-8 md:py-12">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="flex items-center justify-center gap-3 mb-4 md:mb-6">
             <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-400 rounded-lg flex items-center justify-center">
               <DollarSign className="w-4 h-4 text-white" />
             </div>
             <span className="text-lg font-bold text-white">FinanceAI</span>
           </div>
-          <p className="text-gray-400 mb-6">
+          <p className="text-gray-400 mb-4 md:mb-6 text-sm md:text-base">
             © 2024 FinanceAI. Todos os direitos reservados.
           </p>
-          <div className="flex justify-center gap-6 text-sm text-gray-400">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 text-xs md:text-sm text-gray-400">
             <a href="#" className="hover:text-green-400 transition-colors">Termos de Uso</a>
             <a href="#" className="hover:text-green-400 transition-colors">Política de Privacidade</a>
             <a href="#" className="hover:text-green-400 transition-colors">Suporte</a>
