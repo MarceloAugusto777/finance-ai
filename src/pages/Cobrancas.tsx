@@ -368,7 +368,7 @@ const Cobrancas = () => {
             filteredCobrancas.map((cobranca) => (
               <Card key={cobranca.id} className="finance-card">
                 <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
+                                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <div className="flex items-center gap-4">
                       <div className={`p-2 rounded-lg ${getStatusColor(cobranca.status)}`}>
                         {getStatusIcon(cobranca.status)}

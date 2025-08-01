@@ -483,6 +483,48 @@ All colors MUST be HSL.
     min-width: 0;
   }
   
+  /* Forçar quebra de linha em mobile */
+  .mobile-wrap {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Garantir que flex items não quebrem */
+  .flex-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .flex-mobile {
+      flex-wrap: nowrap;
+      gap: 1rem;
+    }
+  }
+  
+  /* Garantir que cards tenham largura máxima */
+  .card-mobile {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+  
+  /* Garantir que texto não transborde */
+  .text-mobile {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Garantir que botões não quebrem */
+  .button-mobile {
+    min-width: 0;
+    flex-shrink: 0;
+  }
+  
   @media (min-width: 640px) {
     .mobile-padding {
       padding-left: 1rem;

@@ -269,21 +269,21 @@ const Saidas = () => {
             filteredSaidas.map((saida) => (
               <Card key={saida.id} className="finance-card hover:shadow-md transition-shadow">
                 <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className={`p-2 rounded-lg ${getStatusColor(saida.status)}`}>
-                        {getStatusIcon(saida.status)}
-                      </div>
-                      <div>
-                        <h3 className="font-medium">{saida.descricao}</h3>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span>{saida.categoria}</span>
-                          <span>{new Date(saida.data).toLocaleDateString('pt-BR')}</span>
-                        </div>
-                      </div>
-                    </div>
+                                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                                         <div className="flex items-center gap-4 min-w-0 flex-1">
+                       <div className={`p-2 rounded-lg ${getStatusColor(saida.status)} flex-shrink-0`}>
+                         {getStatusIcon(saida.status)}
+                       </div>
+                       <div className="min-w-0 flex-1">
+                         <h3 className="font-medium text-mobile">{saida.descricao}</h3>
+                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 text-sm text-muted-foreground">
+                           <span className="text-mobile">{saida.categoria}</span>
+                           <span className="text-mobile">{new Date(saida.data).toLocaleDateString('pt-BR')}</span>
+                         </div>
+                       </div>
+                     </div>
                     
-                    <div className="flex items-center gap-4">
+                                         <div className="flex items-center gap-4 flex-shrink-0">
                       <div className="text-right">
                         <p className="font-medium text-lg text-red-600">
                           - {new Intl.NumberFormat("pt-BR", {

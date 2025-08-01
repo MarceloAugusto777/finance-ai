@@ -345,22 +345,22 @@ const Metas = () => {
             return (
               <Card key={meta.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between">
+                                     <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
                     <div className="flex items-center gap-2">
                       <TipoIcon className={`w-5 h-5 ${tipoInfo.color}`} />
                       <Badge variant="outline" className={prioridadeInfo.color}>
                         {prioridadeInfo.label}
                       </Badge>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <StatusIcon className={`w-4 h-4 ${statusInfo.color}`} />
-                      <span className={`text-xs ${statusInfo.color}`}>
-                        {statusInfo.text}
-                      </span>
-                    </div>
+                                         <div className="flex items-center gap-1 flex-shrink-0">
+                       <StatusIcon className={`w-4 h-4 ${statusInfo.color}`} />
+                       <span className={`text-xs ${statusInfo.color} text-mobile`}>
+                         {statusInfo.text}
+                       </span>
+                     </div>
                   </div>
-                  <CardTitle className="text-lg">{meta.titulo}</CardTitle>
-                  <CardDescription>{meta.descricao}</CardDescription>
+                                     <CardTitle className="text-lg text-mobile">{meta.titulo}</CardTitle>
+                   <CardDescription className="text-mobile">{meta.descricao}</CardDescription>
                 </CardHeader>
 
                 <CardContent className="space-y-4">

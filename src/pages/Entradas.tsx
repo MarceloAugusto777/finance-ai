@@ -148,34 +148,34 @@ const Entradas = () => {
     <Layout title="Entradas">
       <div className="space-y-6">
         {/* Header Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-between">
-          <div className="flex gap-3">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-              <Input
-                placeholder="Buscar entradas..."
-                className="pl-10 w-80"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-[180px]">
-                <Filter className="w-4 h-4 mr-2" />
-                <SelectValue placeholder="Filtrar por status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="todos">Todos os status</SelectItem>
-                {statusOptions.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+                 <div className="flex flex-col sm:flex-row gap-4 justify-between flex-mobile">
+                     <div className="flex gap-3 flex-wrap">
+             <div className="relative">
+               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+               <Input
+                 placeholder="Buscar entradas..."
+                 className="pl-10 w-full sm:w-80"
+                 value={searchTerm}
+                 onChange={(e) => setSearchTerm(e.target.value)}
+               />
+             </div>
+             <Select value={statusFilter} onValueChange={setStatusFilter}>
+               <SelectTrigger className="w-full sm:w-[180px]">
+                 <Filter className="w-4 h-4 mr-2" />
+                 <SelectValue placeholder="Filtrar por status" />
+               </SelectTrigger>
+               <SelectContent>
+                 <SelectItem value="todos">Todos os status</SelectItem>
+                 {statusOptions.map((option) => (
+                   <SelectItem key={option.value} value={option.value}>
+                     {option.label}
+                   </SelectItem>
+                 ))}
+               </SelectContent>
+             </Select>
+           </div>
           
-          <div className="flex gap-3">
+                     <div className="flex gap-3 flex-wrap">
             <Button variant="outline" className="gap-2">
               <Download className="w-4 h-4" />
               Exportar
@@ -269,21 +269,21 @@ const Entradas = () => {
             filteredEntradas.map((entrada) => (
               <Card key={entrada.id} className="finance-card hover:shadow-md transition-shadow">
                 <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className={`p-2 rounded-lg ${getStatusColor(entrada.status)}`}>
-                        {getStatusIcon(entrada.status)}
-                      </div>
-                      <div>
-                        <h3 className="font-medium">{entrada.descricao}</h3>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span>{entrada.categoria}</span>
-                          <span>{new Date(entrada.data).toLocaleDateString('pt-BR')}</span>
-                        </div>
-                      </div>
-                    </div>
+                                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                                         <div className="flex items-center gap-4 min-w-0 flex-1">
+                       <div className={`p-2 rounded-lg ${getStatusColor(entrada.status)} flex-shrink-0`}>
+                         {getStatusIcon(entrada.status)}
+                       </div>
+                       <div className="min-w-0 flex-1">
+                         <h3 className="font-medium text-mobile">{entrada.descricao}</h3>
+                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 text-sm text-muted-foreground">
+                           <span className="text-mobile">{entrada.categoria}</span>
+                           <span className="text-mobile">{new Date(entrada.data).toLocaleDateString('pt-BR')}</span>
+                         </div>
+                       </div>
+                     </div>
                     
-                    <div className="flex items-center gap-4">
+                                         <div className="flex items-center gap-4 flex-shrink-0">
                       <div className="text-right">
                         <p className="font-medium text-lg text-green-600">
                           + {new Intl.NumberFormat("pt-BR", {

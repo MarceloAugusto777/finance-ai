@@ -237,7 +237,7 @@ const Clientes = () => {
             {filteredClientes.length > 0 ? (
               <div className="space-y-4">
                 {filteredClientes.map((cliente) => (
-                  <div key={cliente.id} className="flex items-center justify-between p-4 rounded-lg border border-border/20 hover:bg-background/60 transition-colors">
+                  <div key={cliente.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-lg border border-border/20 hover:bg-background/60 transition-colors gap-3">
                     <div className="flex items-center gap-4">
                                              <Avatar className="w-12 h-12">
                          <AvatarImage src="" />
@@ -276,7 +276,7 @@ const Clientes = () => {
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       <Button
                         variant="ghost"
                         size="sm"
