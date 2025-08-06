@@ -150,7 +150,7 @@ export function TransactionModal({ type, trigger }: TransactionModalProps) {
       <DialogTrigger asChild>
         {trigger || defaultTrigger}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto glass-card mobile-scrollable">
+      <DialogContent className="sm:max-w-[600px] max-h-[85vh] overflow-y-auto glass-card mobile-scrollable fixed inset-4 sm:inset-auto sm:left-[50%] sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <div className={cn("p-2 rounded-lg", isEntrada ? "bg-success/20" : "bg-danger/20")}>
@@ -319,7 +319,7 @@ export function TransactionModal({ type, trigger }: TransactionModalProps) {
             />
           </div>
 
-          <div className="flex gap-3 justify-end sticky bottom-0 bg-background pt-4 border-t border-border/20">
+          <div className="flex gap-3 justify-end sticky bottom-0 bg-background pt-4 border-t border-border/20 mt-6">
             <Button 
               type="button" 
               variant="outline" 

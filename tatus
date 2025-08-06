@@ -1,0 +1,5 @@
+[33m6f7022a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m fix: corrigir scroll do modal Nova Entrada em mobile - Adicionar overflow-y-auto e max-height ao DialogContent - Implementar botões sticky no final do formulário - Adicionar classes CSS específicas para mobile - Garantir scroll suave com -webkit-overflow-scrolling
+[33mb8ff367[m fix: corrigir loop de carregamento infinito e scroll duplo - Adicionar estado sessionRestored para aguardar sessão ser restaurada - Corrigir ProtectedRoute para aguardar sessionRestored - Atualizar hooks para só executar quando sessão restaurada - Remover overflow duplo do Layout e CSS global - Implementar AuthLoading específico para autenticação
+[33mbf73f72[m Landing page responsive mobile
+[33mb3ee59a[m Fix: Scroll landing page e elementos dentro da tela - corrigir overflow e responsividade
+[33m00235a2[m Fix: Responsividade completa - corrigir overflow horizontal e layout mobile em todas as páginas
