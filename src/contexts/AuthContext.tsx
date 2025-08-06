@@ -5,6 +5,7 @@ interface AuthContextType {
   user: any;
   session: any;
   loading: boolean;
+  sessionRestored: boolean; // Novo estado
   isAuthenticated: boolean;
   isEmailConfirmed: boolean;
   signUp: (data: any) => Promise<{ success: boolean; error?: string }>;

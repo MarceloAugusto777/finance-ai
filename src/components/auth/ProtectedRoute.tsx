@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuthContext } from "@/contexts/AuthContext";
-import { Loading } from "@/components/ui/loading";
+import { Loading, AuthLoading } from "@/components/ui/loading";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -9,12 +9,12 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children, requireEmailConfirmation = false }: ProtectedRouteProps) {
-  const { isAuthenticated, loading, isEmailConfirmed } = useAuthContext();
+  const { isAuthenticated, loading, sessionRestored, isEmailConfirmed } = useAuthContext();
   const location = useLocation();
 
-  // Mostrar loading enquanto verifica autenticação
-  if (loading) {
-    return <Loading />;
+  // Mostrar loading enquanto verifica autenticação OU enquanto a sessão não foi restaurada
+  if (loading || !sessionRestored) {
+    return <AuthLoading />;
   }
 
   // Se não está autenticado, redirecionar para login

@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 export interface Cobranca {
   id: string;
@@ -40,11 +41,13 @@ export interface UpdateCobrancaData {
 }
 
 export function useCobrancas() {
+  const { sessionRestored, isAuthenticated } = useAuthContext();
   const queryClient = useQueryClient();
   const { toast } = useToast();
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["cobrancas"],
+    enabled: sessionRestored && isAuthenticated, // Só executar quando a sessão estiver restaurada e o usuário autenticado
     queryFn: async (): Promise<Cobranca[]> => {
       console.log("🔍 useCobrancas: Iniciando busca de dados...");
       

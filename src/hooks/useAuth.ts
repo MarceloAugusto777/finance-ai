@@ -7,6 +7,7 @@ interface AuthState {
   user: User | null;
   session: Session | null;
   loading: boolean;
+  sessionRestored: boolean; // Novo estado para controlar se a sessão foi restaurada
 }
 
 interface SignUpData {
@@ -35,6 +36,7 @@ export function useAuth() {
     user: null,
     session: null,
     loading: true,
+    sessionRestored: false, // Inicialmente false até a sessão ser verificada
   });
 
   const { toast } = useToast();
@@ -45,33 +47,45 @@ export function useAuth() {
 
     const getSession = async () => {
       try {
+        console.log("🔄 Verificando sessão inicial...");
         const { data: { session }, error } = await supabase.auth.getSession();
         
         if (error) {
-          console.error("Erro ao obter sessão:", error);
+          console.error("❌ Erro ao obter sessão:", error);
           if (mounted) {
+            setAuthState({
+              user: null,
+              session: null,
+              loading: false,
+              sessionRestored: true, // Marcar como restaurada mesmo com erro
+            });
             toast({
               title: "Erro de autenticação",
               description: "Erro ao verificar sessão atual.",
               variant: "destructive",
             });
           }
+          return;
         }
 
+        console.log("✅ Sessão verificada:", session ? "Usuário logado" : "Sem sessão");
+        
         if (mounted) {
           setAuthState({
             user: session?.user ?? null,
             session,
             loading: false,
+            sessionRestored: true, // Marcar como restaurada
           });
         }
       } catch (error) {
-        console.error("Erro ao obter sessão:", error);
+        console.error("❌ Erro ao obter sessão:", error);
         if (mounted) {
           setAuthState({
             user: null,
             session: null,
             loading: false,
+            sessionRestored: true, // Marcar como restaurada mesmo com erro
           });
         }
       }
@@ -84,13 +98,14 @@ export function useAuth() {
       async (event, session) => {
         if (!mounted) return;
 
-        console.log("Auth state change:", event, session?.user?.email);
+        console.log("🔄 Auth state change:", event, session?.user?.email);
 
-        setAuthState({
+        setAuthState(prev => ({
           user: session?.user ?? null,
           session,
           loading: false,
-        });
+          sessionRestored: true, // Sempre marcar como restaurada após mudança
+        }));
 
         // Criar perfil do usuário após signup
         if (event === "SIGNED_IN" && session?.user) {
@@ -103,7 +118,7 @@ export function useAuth() {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, [toast]);
+  }, []);
 
   // Criar perfil do usuário
   const createUserProfile = async (user: User) => {
@@ -451,6 +466,7 @@ export function useAuth() {
     user: authState.user,
     session: authState.session,
     loading: authState.loading,
+    sessionRestored: authState.sessionRestored, // Novo estado
     isAuthenticated: !!authState.user,
     isEmailConfirmed: isEmailConfirmed(),
 

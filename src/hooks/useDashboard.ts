@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 export interface DashboardStats {
   totalEntradas: number;
@@ -23,8 +24,11 @@ export interface DashboardStats {
 // Dados mock removidos - agora o sistema usa dados reais do banco
 
 export function useDashboardStats() {
+  const { sessionRestored, isAuthenticated } = useAuthContext();
+  
   const queryResult = useQuery({
     queryKey: ["dashboard-stats"],
+    enabled: sessionRestored && isAuthenticated, // Só executar quando a sessão estiver restaurada e o usuário autenticado
     queryFn: async () => {
       try {
         console.log("🔄 Iniciando busca de estatísticas do dashboard...");

@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 export interface Cliente {
   id: string;
@@ -13,8 +14,11 @@ export interface Cliente {
 }
 
 export function useClientes() {
+  const { sessionRestored, isAuthenticated } = useAuthContext();
+  
   return useQuery({
     queryKey: ["clientes"],
+    enabled: sessionRestored && isAuthenticated, // Só executar quando a sessão estiver restaurada e o usuário autenticado
     queryFn: async () => {
       console.log("🔍 useClientes: Iniciando busca de dados...");
       

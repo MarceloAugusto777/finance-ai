@@ -85,6 +85,23 @@ export function Loading() {
   );
 }
 
+export function AuthLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center space-y-4">
+        <div className="relative">
+          <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto" />
+          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-primary/40 rounded-full animate-spin mx-auto" style={{ animationDelay: '-0.5s' }} />
+        </div>
+        <div className="space-y-2">
+          <p className="text-lg font-medium text-foreground">Verificando autenticação...</p>
+          <p className="text-sm text-muted-foreground">Aguarde enquanto verificamos sua sessão</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function DashboardLoading() {
   return (
     <div className="space-y-6 animate-fade-in">
