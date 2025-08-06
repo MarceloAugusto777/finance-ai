@@ -51,7 +51,7 @@ export default function LandingMobile() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative w-full overflow-y-auto landing-mobile">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative w-full no-double-scroll landing-mobile">
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-40">
         <div className="absolute inset-0 bg-gradient-to-br from-green-600/10 to-emerald-600/10"></div>

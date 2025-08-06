@@ -18,7 +18,9 @@ import {
   Smartphone,
   DollarSign,
   TrendingDown,
-  Receipt
+  Receipt,
+  Bot,
+  MessageCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -50,7 +52,7 @@ export default function Landing() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-y-auto w-full mobile-scrollable landing-page">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative w-full no-double-scroll">
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-40">
         <div className="absolute inset-0 bg-gradient-to-br from-green-600/10 to-emerald-600/10"></div>
@@ -239,9 +241,9 @@ export default function Landing() {
                 <div className="w-14 h-14 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Receipt className="w-7 h-7 text-white" />
                 </div>
-                <CardTitle className="text-white text-xl">Cobranças Inteligentes</CardTitle>
+                <CardTitle className="text-white text-xl">Cobranças Automáticas</CardTitle>
                 <CardDescription className="text-gray-300">
-                  Crie e gerencie cobranças com lembretes automáticos e acompanhamento
+                  Crie e gerencie cobranças com lembretes automáticos diretamente para o seu cliente e acompanhamento pelo dashboard
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -249,13 +251,126 @@ export default function Landing() {
             <Card className="border-green-500/20 bg-black/40 backdrop-blur-sm hover:bg-green-500/10 transition-all duration-300 group">
               <CardHeader>
                 <div className="w-14 h-14 bg-gradient-to-r from-teal-600 to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Download className="w-7 h-7 text-white" />
+                  <Bot className="w-7 h-7 text-white" />
                 </div>
-                <CardTitle className="text-white text-xl">Relatórios Avançados</CardTitle>
+                <CardTitle className="text-white text-xl">Zapinho</CardTitle>
                 <CardDescription className="text-gray-300">
-                  Exporte relatórios detalhados em PDF, Excel e JSON com análises completas
+                  Controle tudo diretamente do seu WhatsApp com o Zapinho, o seu assistente financeiro que está totalmente vinculado ao seu dashboard
                 </CardDescription>
               </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="relative py-16 md:py-32 bg-black/40 backdrop-blur-sm">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 md:mb-20">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
+              <DollarSign className="w-4 h-4 text-white" />
+              <span className="text-white text-xs md:text-sm font-medium">Preços</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 px-4">
+              Escolha seu Plano
+            </h2>
+            <p className="text-base md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+              Planos flexíveis para todos os tipos de negócio
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
+            {/* Free Trial */}
+            <Card className="border-green-500/20 bg-black/40 backdrop-blur-sm hover:bg-green-500/10 transition-all duration-300 group relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-bold px-4 py-1 rounded-full">
+                  GRÁTIS
+                </div>
+              </div>
+              <CardHeader className="text-center pt-8">
+                <CardTitle className="text-white text-2xl mb-2">Free Trial</CardTitle>
+                <div className="text-4xl font-bold text-white mb-2">
+                  R$ 0
+                  <span className="text-lg text-gray-400 font-normal">/mês</span>
+                </div>
+                <CardDescription className="text-gray-300">
+                  Perfeito para começar e testar todas as funcionalidades
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Dashboard completo</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Gestão de entradas e saídas</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Relatórios básicos</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Suporte por email</span>
+                  </div>
+                </div>
+                <Button 
+                  className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600" 
+                  onClick={handleRegisterClick}
+                >
+                  Começar Grátis
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Pro Plan */}
+            <Card className="border-green-500/20 bg-black/40 backdrop-blur-sm hover:bg-green-500/10 transition-all duration-300 group relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-4 py-1 rounded-full">
+                  PRO
+                </div>
+              </div>
+              <CardHeader className="text-center pt-8">
+                <CardTitle className="text-white text-2xl mb-2">Pro</CardTitle>
+                <div className="text-4xl font-bold text-white mb-2 opacity-50">
+                  EM BREVE
+                </div>
+                <CardDescription className="text-gray-300">
+                  Funcionalidades avançadas para negócios em crescimento
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Tudo do plano Free</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Cobranças automáticas</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Zapinho integrado</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Relatórios avançados</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <span className="text-gray-300">Suporte prioritário</span>
+                  </div>
+                </div>
+                <Button 
+                  className="w-full bg-gray-600 hover:bg-gray-700 cursor-not-allowed" 
+                  disabled
+                >
+                  Em Breve
+                </Button>
+              </CardContent>
             </Card>
           </div>
         </div>
