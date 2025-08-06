@@ -522,6 +522,8 @@ All colors MUST be HSL.
   .mobile-scrollable {
     height: auto;
     min-height: 100vh;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Forçar scroll em dispositivos móveis */
@@ -594,6 +596,13 @@ All colors MUST be HSL.
     .mobile-container {
       padding-left: 1rem;
       padding-right: 1rem;
+    }
+    
+    /* Melhorias específicas para modais em mobile */
+    .mobile-scrollable {
+      max-height: 85vh !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
     }
   }
 
